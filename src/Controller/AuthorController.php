@@ -25,7 +25,6 @@ class AuthorController extends AbstractController
                 'No author found'
             );
         }
-        dd($aut[0]->getBooks()->getValues());
         return $this->render('author/welcome.html.twig',
             array('aut' => $aut)
         );

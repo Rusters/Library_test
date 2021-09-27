@@ -2,19 +2,31 @@
 
 namespace App\Controller;
 
+use App\Entity\Categories;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/category")
+ */
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/category", name="category")
+     * @Route("/")
      */
     public function index(): Response
     {
-        return $this->render('category/index.html.twig', [
-            'controller_name' => 'CategoryController',
-        ]);
+        $categ = $this->getDoctrine()
+            ->getRepository(Categories::class)
+            ->findAll();
+        if (!$categ) {
+            throw $this->createNotFoundException(
+                'No category found'
+            );
+        }
+        return $this->render('category/category.html.twig',
+            array('categ' => $categ)
+        );
     }
 }
