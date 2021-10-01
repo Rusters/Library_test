@@ -1,0 +1,13 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="input-group input-group-sm mb-3" style="margin-left: auto; margin-right: auto">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Full name of the category</span>
+        <input id="inputAddCategory" style="width: 5px" type="text" class="form-control" aria-describedby="inputGroup-sizing-sm">
+        <button id="btnAddCategory" class="btn btn-outline-secondary" type="button">Add</button>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/assets/js/category/categoryAdd.js"></script>
+{% endblock %}

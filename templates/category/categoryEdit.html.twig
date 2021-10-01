@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Edit this name</span>
+        <input id="inputEditCategory" value="{{ category.name }}" style="width: 5px" type="text" class="form-control" aria-describedby="inputGroup-sizing-sm">
+        <button id="btnEditCategory" data-id="{{ category.id }}" class="btn btn-outline-secondary" type="button">Add</button>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/assets/js/category/categoryEdit.js"></script>
+{% endblock %}

@@ -43,7 +43,7 @@ class AuthorController extends AbstractController
         return json_decode($request->getContent(), true);
     }
     /**
-     * @Route("/authorAdd", name="authorAddAjax", methods={"POST", "PUT"})
+     * @Route("/authorAdd", name="authorAddAjax", methods={"POST"})
      */
     public function authorAddAjax(Request $request)
     {
@@ -57,7 +57,6 @@ class AuthorController extends AbstractController
             $author->setName($content["name"]);
             $em->persist($author);
             $em->flush();
-//            return new JsonResponse(true);
             return $this->json([
                 "message" => "ok",
                 "author_id" => $author->getId()
@@ -105,7 +104,6 @@ class AuthorController extends AbstractController
      */
     public function authorRemoveAjax(Request $request, int $id)
     {
-        //$content = $this->getData($request);
         $em = $this->getDoctrine()->getManager();
         $author = $em->getRepository(Authors::class)->find($id);
         if($author) {
