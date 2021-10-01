@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="input-group input-group-sm mb-3" style="margin-left: auto; margin-right: auto">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Full name of the author</span>
+        <input id="inputAddAuthor" style="width: 5px" type="text" class="form-control" aria-label="Пример размера поля ввода" aria-describedby="inputGroup-sizing-sm">
+        <button id="btnAddAuthor" class="btn btn-outline-secondary" type="button">Add</button>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/assets/js/author.js"></script>
+{% endblock %}

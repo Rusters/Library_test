@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1 class="heading">List of authors</h1>
-        <button type="button" style="width:100%" class="btn btn-outline-dark btn-block">Add new author</button>
+    <a href="/author/authorAdd" style="width:100%" class="btn btn-outline-dark btn-block">Add new author</a>
         {% if aut is defined %}
             <table class="table table-hover" style="width: 100%">
                 <thead>
@@ -16,12 +16,15 @@
                     <tr>
                         <td>{{ a.id }}</td>
                         <td>{{ a.name }}</td>
-                        <td><button type="button" class="btn btn-outline-dark btn-sm">Edit</button></td>
-                        <td><button type="button" class="btn btn-outline-dark btn-sm">Remove</button></td>
+                        <td><a href="/author/authorEdit/{{ a.id }}" class="btn btn-outline-dark btn-sm">Edit</a></td>
+                        <td><button type="button" data-remove="{{ a.id }}" class="but">Remove</button></td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
 
     {% endif %}
+{% endblock %}
+{% block javascripts %}
+    <script src="/assets/js/authorRemove.js"></script>
 {% endblock %}
