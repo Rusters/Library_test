@@ -18,6 +18,7 @@
                         <td>{{ a.name }}</td>
                         <td><a href="/author/authorEdit/{{ a.id }}" class="btn btn-outline-dark btn-sm">Edit</a></td>
                         <td><button type="button" data-remove="{{ a.id }}" class="but">Remove</button></td>
+                        <td><a href="/author/{{ a.id }}" class="btn btn-outline-dark btn-sm">All his books</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

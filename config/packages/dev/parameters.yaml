@@ -1,0 +1,2 @@
+parameters:
+  files_folder: '/var/www/data/library'

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+        <input id="bookAddName" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        {% if author is defined %}
+            <select style="width: 25%" id="selectionAuthor" class="js-example-basic-single">
+                {% for a in author %}
+                    <option>{{ a.name }}</option>
+                {% endfor %}
+            </select>
+        {% endif %}
+        {% if category is defined %}
+            <select style="width: 25%" id="selectionCategory" class="js-example-basic-single">
+                {% for c in category %}
+                    <option>{{ c.name }}</option>
+                {% endfor %}
+            </select>
+        {% endif %}
+        <input id="bookAddPhoto" type="file" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+    </div>
+    <button id="btnAddBook" style="width:100%" class="btn btn-outline-dark btn-block" type="button">Save</button>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/assets/js/book/bookAdd.js"></script>
+    <script src="/assets/js/select2.js"></script>
+{% endblock %}

@@ -1,28 +1,21 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <h1 class="heading">List of books</h1>
-    <button type="button" style="width:100%" class="btn btn-outline-dark btn-block">Add new book</button>
-    {% if book is defined %}
-        <table class="table table-hover" style="width: 100%">
-            <thead>
-            <th>ID</th>
-            <th>name</th>
-            <th>photo</th>
-            <th>Edit</th>
-            <th>Remove</th>
-            </thead>
-            <tbody>
-            {% for b in book %}
-                <tr>
-                    <td>{{ b.id }}</td>
-                    <td>{{ b.name }}</td>
-                    <td>{{ b.photo }}</td>
-                    <td><button type="button" class="btn btn-outline-dark btn-sm">Edit</button></td>
-                    <td><button type="button" class="btn btn-outline-dark btn-sm">Remove</button></td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+    <a href="/book/bookAdd" style="width:100%" class="btn btn-outline-dark btn-block">Add new book</a>
+    <div class="container">
+        <div class="grid-card">
+            {% if book is defined %}
+                {% for b in book %}
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ b.photo }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ b.name }}</h5>
+                            <a href="/book/{{ b.id }}" class="btn btn-primary">More information</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
 
-    {% endif %}
 {% endblock %}
