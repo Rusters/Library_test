@@ -10,7 +10,8 @@
                         <img src="{{ b.photo }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ b.name }}</h5>
-                            <a href="/book/{{ b.id }}" class="btn btn-primary">More information</a>
+                            <a href="/book/bookEdit/{{ b.id }}" class="btn btn-primary">Edit</a>
+                            <button type="button" data-remove="{{ b.id }}" class="but btn btn-primary">&#10008;</button>
                         </div>
                     </div>
                 {% endfor %}
@@ -18,4 +19,7 @@
         </div>
     </div>
 
+{% endblock %}
+{% block javascripts %}
+    <script src="/assets/js/book/bookRemove.js"></script>
 {% endblock %}

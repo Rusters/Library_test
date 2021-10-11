@@ -8,27 +8,24 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 use MongoDB\BSON\Persistable;
 
-/**
- * @ORM\Entity(repositoryClass=AuthorsRepository::class)
- */
-class Authors
+class Authors_Books
 {
     /**
-     * Many authors have many books
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(name="id", type="integer")
      */
     private $id;
 
-    public function __construct() {
-        $this->books = new ArrayCollection();
-    }
+    /**
+     * @ORM\Column(name="authors_id", type="integer")
+     */
+    private $authors_id;
 
     /**
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="authors_id", type="integer")
      */
-    private $name;
+    private $books_id;
 
     /**
      * @var ArrayCollection

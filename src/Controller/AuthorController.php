@@ -117,5 +117,17 @@ class AuthorController extends AbstractController
             return $this->json("error", 500);
         }
     }
+    /**
+     * @Route("/{id}", name="authorAllBooks", methods={"GET"})
+     */
+    public function authorAllBooks(int $id)
+    {
+        $author = $this->getDoctrine()
+            ->getRepository(Authors::class)
+            ->find($id);
+        return $this->render('author/authorAllBooks.html.twig',
+            array('author' => $author)
+        );
+    }
 }
   

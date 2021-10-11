@@ -1,20 +1,20 @@
 $(document).ready( function()
 {
-    $('.bat').click(function ()
+    $('.but').click(function ()
     {
         if (confirm("Are you sure?") )
         {
             const id = $(this).data("remove");
             $.ajax({
                     type: "DELETE",
-                    url: "/category/"+id,
+                    url: "/book/"+id,
                     data: JSON.stringify({
                         id : id
                     }),
                     success: function(response)
                     {
                         alert(`Remove's complete`)
-                        location.href = "/category";
+                        location.href = "/book";
                     },
                     error: function (error) {
                         console.log(error)
@@ -24,7 +24,7 @@ $(document).ready( function()
         }
         else{
             alert('Deletion canceled!')
-            location.href = "/category";
+            location.href = "/book";
         }
     })
 });

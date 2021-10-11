@@ -24,11 +24,6 @@ class BookController extends AbstractController
         $book = $this->getDoctrine()
             ->getRepository(Books::class)
             ->findAll();
-        if (!$book) {
-            throw $this->createNotFoundException(
-                'No book found'
-            );
-        }
         return $this->render('book/book.html.twig',
             array('book' => $book)
         );
@@ -81,6 +76,66 @@ class BookController extends AbstractController
         return $this->json([
             "message" => "ok",
             "book_id" => $book->getId()
+        ], 200);
+    }
+    /**
+     * @Route("/{id}", name="bookRemoveAjax", methods={"DELETE"})
+     */
+    public function bookRemoveAjax(Request $request, int $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $book = $em->getRepository(Books::class)->find($id);
+        $authors = $em->getRepository(Authors::class)->findAll();
+        $category = $em->getRepository(Categories::class)->findAll();
+        if(!empty($book)) {
+            foreach ($authors as $a)
+                $a->removeBooks($book);
+            foreach ($category as $c)
+                $c->removeBooks($book);
+            $em->remove($book);
+            $em->flush();
+            return $this->json([
+                "message" => "ok"
+            ], 200);
+        }
+        else {
+            return $this->json("error", 500);
+        }
+    }
+
+    /**
+     * @Route("/bookEdit/{id}", name="bookEditAjax", methods={"GET"})
+     */
+    public function bookEditAjax(Request $request, int $id)
+    {
+        $book = $this->getDoctrine()->getRepository(Books::class)->find($id);
+        if(!$book)
+            throw $this->createNotFoundException(
+                'No author found for name '.$book->getName()
+            );
+        return $this->render('book/bookEdit.html.twig',
+            array('book' => $book)
+        );
+    }
+    /**
+     * @Route("/bookEdit", name="bookEditAddAjax", methods={"POST"})
+     */
+    public function bookEditAddAjax(Request $request)
+    {
+        $photo = $request->files->get('file');
+        $em = $this->getDoctrine()->getManager();
+        $book = $em->getRepository(Books::class)->findOneBy([
+            "id" => $request->get('id')
+        ]);
+        $dir = $this->getParameter('files_folder').'/photos';
+        $photo->move($dir, $photo->getClientOriginalName());
+        $book->setName($request->get('text'));
+        $book->setPhoto("/photos/".$photo->getClientOriginalName());
+        $em->persist($book);
+        $em->flush();
+        return $this->json([
+            "message" => "ok",
+            "author_id" => $book->getId()
         ], 200);
     }
 }

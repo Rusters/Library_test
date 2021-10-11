@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1 class="heading">Books -  {{ author.name }}</h1>
+    <div class="container">
+        <div class="grid-card">
+            {% if author.books is defined %}
+                {% for a in author.books %}
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ a.photo }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ a.name }}</h5>
+                            <a href="/book/{{ a.id }}" class="btn btn-primary">More information</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

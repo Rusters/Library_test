@@ -32,6 +32,7 @@ class Books
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Authors", inversedBy="books")
      * @ORM\JoinTable(name="authors_books")
+     * @ORM\JoinColumn(name="authors_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $authors;
     /**
@@ -85,7 +86,7 @@ class Books
         }
         return $this;
     }
-    public function removeBooks (Authors $author): self
+    public function removeAuthors (Authors $author): self
     {
         if ($this->authors->contains($author)) {
             $this->authors->removeElement($author);

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+        <input id="bookEditName" value="{{ book.name }}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        <input id="bookEditPhoto" type="file" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+    </div>
+    <button id="btnEditBook" data-id="{{ book.id }}" style="width:100%" class="btn btn-outline-dark btn-block" type="button">Edit</button>
+{% endblock %}
+{% block javascripts %}
+    <script src="/assets/js/book/bookEdit.js"></script>
+    <script src="/assets/js/select2.js"></script>
+{% endblock %}
