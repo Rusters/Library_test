@@ -19,6 +19,10 @@ class AuthorsRepository extends ServiceEntityRepository
         parent::__construct($registry, Authors::class);
     }
 
+    public function findAll(): array
+    {
+        return $this->findBy([], array('name' => 'ASC'));
+    }
     // /**
     //  * @return Authors[] Returns an array of Authors objects
     //  */

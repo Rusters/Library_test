@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Authors;
+use App\Entity\Books;
 
 /**
  * @Route("/author")
@@ -23,11 +24,7 @@ class AuthorController extends AbstractController
         $aut = $this->getDoctrine()
             ->getRepository(Authors::class)
             ->findAll();
-        if (!$aut) {
-            throw $this->createNotFoundException(
-                'No author found'
-            );
-        }
+        $em = $this->getDoctrine()->getManager();
         return $this->render('author/welcome.html.twig',
             array('aut' => $aut)
         );
@@ -106,6 +103,12 @@ class AuthorController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $author = $em->getRepository(Authors::class)->find($id);
+        /*foreach ($em->getRepository(Books::class)->findAll as $b){
+            $book = $em->getRepository(Books::class)->findBy([
+                "id.authors" => $author
+            ]);
+        }*/
+        $author->getBooks()->;
         if($author) {
             $em->remove($author);
             $em->flush();

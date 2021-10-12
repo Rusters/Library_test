@@ -4,12 +4,15 @@
     <div class="container">
         <div class="grid-card">
             {% if author.books is defined %}
-                {% for a in author.books %}
+                {% for b in author.books %}
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ a.photo }}" class="card-img-top" alt="...">
+                        <img src="{{ b.photo }}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ a.name }}</h5>
-                            <a href="/book/{{ a.id }}" class="btn btn-primary">More information</a>
+                            <h4 class="card-title">{{ b.name }}</h4>
+                            {% for c in b.categories %}
+                                <h5 class="card-title">{{ c.name }}</h5>
+                            {%  endfor %}
+                            <a href="/book/{{ b.id }}" class="btn btn-primary">More information</a>
                         </div>
                     </div>
                 {% endfor %}

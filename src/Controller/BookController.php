@@ -85,13 +85,10 @@ class BookController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $book = $em->getRepository(Books::class)->find($id);
-        $authors = $em->getRepository(Authors::class)->findAll();
-        $category = $em->getRepository(Categories::class)->findAll();
         if(!empty($book)) {
-            foreach ($authors as $a)
-                $a->removeBooks($book);
-            foreach ($category as $c)
-                $c->removeBooks($book);
+
+            $book->getAuthors()->clear();
+            $book->getCategories()->clear();
             $em->remove($book);
             $em->flush();
             return $this->json([

@@ -9,9 +9,15 @@
                     <div class="card" style="width: 18rem;">
                         <img src="{{ b.photo }}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ b.name }}</h5>
-                            <a href="/book/bookEdit/{{ b.id }}" class="btn btn-primary">Edit</a>
-                            <button type="button" data-remove="{{ b.id }}" class="but btn btn-primary">&#10008;</button>
+                            <h4 class="card-title">{{ b.name }}</h4>
+                                {% for a in b.authors %}
+                                    <h5 class="card-title">{{ a.name }}</h5>
+                                {% endfor %}
+                                {% for c in b.categories %}
+                                    <h5 class="card-title">{{ c.name }}</h5>
+                                {% endfor %}
+                            <a href="/book/bookEdit/{{ b.id }}" class="btn btn-primary" style="width: 49%">Edit</a>
+                            <button type="button" data-remove="{{ b.id }}" class="but btn btn-primary" style="width: 49%">&#10008;</button>
                         </div>
                     </div>
                 {% endfor %}
